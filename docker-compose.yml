@@ -1,0 +1,23 @@
+version: '3'
+services:
+  token-bucket:
+    build:
+      context: .
+    command: npm run dev
+    working_dir: /src
+    volumes:
+      - ./:/src
+    ports:
+      - '9229:9229'
+    environment:
+      NODE_ENV: development
+      NODE_IP: localhost
+      AMQP_URL: amqp://guest:guest@amqp/
+    links:
+      - amqp
+  amqp:
+    image: rabbitmq:management
+    hostname: amqp
+    ports:
+      - '15672:15672'
+      - "5672:5672"

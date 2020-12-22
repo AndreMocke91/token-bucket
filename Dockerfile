@@ -1,0 +1,4 @@
+FROM node:lts
+
+EXPOSE 8080
+EXPOSE 9229
